@@ -1,0 +1,205 @@
+@import './reset.css';
+@import './typography.css';
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel.eot");
+  src: url("./fonts/Sahel.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel.woff2") format("woff2"), url("./fonts/Sahel.woff") format("woff"), url("./fonts/Sahel.ttf") format("truetype");
+  font-weight: normal;
+}
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel-Bold.eot");
+  src: url("./fonts/Sahel-Bold.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel-Bold.woff2") format("woff2"), url("./fonts/Sahel-Bold.woff") format("woff"), url("./fonts/Sahel-Bold.ttf") format("truetype");
+  font-weight: bold;
+}
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel-Light.eot");
+  src: url("./fonts/Sahel-Light.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel-Light.woff2") format("woff2"), url("./fonts/Sahel-Light.woff") format("woff"), url("./fonts/Sahel-Light.ttf") format("truetype");
+  font-weight: 300;
+}
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel-SemiBold.eot");
+  src: url("./fonts/Sahel-SemiBold.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel-SemiBold.woff2") format("woff2"), url("./fonts/Sahel-SemiBold.woff") format("woff"), url("./fonts/Sahel-SemiBold.ttf") format("truetype");
+  font-weight: 600;
+}
+@font-face {
+  font-family: Sahel;
+  src: url("./fonts/Sahel-Black.eot");
+  src: url("./fonts/Sahel-Black.eot?#iefix") format("embedded-opentype"), url("./fonts/Sahel-Black.woff2") format("woff2"), url("./fonts/Sahel-Black.woff") format("woff"), url("./fonts/Sahel-Black.ttf") format("truetype");
+  font-weight: 900;
+}
+* {
+  box-sizing: border-box;
+  font-family: Sahel;
+  direction: rtl;
+}
+
+body {
+  background-color: #2F4858;
+}
+
+.hide {
+  display: none;
+}
+
+.container {
+  width: 80%;
+  min-height: 300px;
+  background-color: #FEFEDF;
+  border-radius: 30px;
+  box-shadow: 0px 0px 4px 1px rgba(254, 254, 223, 0.9176470588);
+  margin: 120px auto;
+  padding: 2.5% 2.5%;
+}
+
+#error {
+  color: #ff5353;
+  text-align: center;
+}
+
+.box-add-task {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3%;
+}
+
+#add-task {
+  border: none;
+  border-radius: 30px;
+  box-shadow: 0px 0px 3px 1px #C7DAC0;
+  background-color: #C7DAC0;
+  margin-left: 20px;
+  padding: 10px 20px;
+  width: 70%;
+  height: 50px;
+  font-size: 22px;
+  font-weight: 600;
+}
+#add-task:focus-visible {
+  outline: none;
+  border: 1px solid #2F4858;
+}
+#add-task-btn {
+  background-color: #476C75;
+  color: #fff;
+  padding: 10px 30px;
+  font-weight: 700;
+  font-size: 20px;
+  border: none;
+  border-radius: 30px;
+  transition: 300ms;
+  cursor: pointer;
+}
+#add-task-btn:hover {
+  background-color: #2F4858;
+}
+#add-task-btn:active {
+  background-color: #273d4b;
+}
+
+#btn-trash {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+#btn-edit {
+  position: absolute;
+  left: 50px;
+  top: 10px;
+  cursor: pointer;
+  background: none;
+  border: none;
+}
+
+.todo-list {
+  width: 95%;
+  margin: 50px auto;
+  min-height: 100px;
+  background-color: rgba(105, 144, 142, 0.2549019608);
+  border: 1px solid #476C75;
+  border-radius: 15px;
+  padding: 2.5%;
+}
+.todo-list-card {
+  background-color: rgba(71, 108, 117, 0.2588235294);
+  padding: 5px 15px;
+  border: 1px solid #476C75;
+  border-radius: 0 30px 0 30px;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+#trash {
+  width: 30px;
+}
+
+#edit {
+  width: 30px;
+}
+
+#checkbox {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  vertical-align: middle;
+  border: 1px solid black;
+  appearance: none;
+  outline: none;
+  cursor: pointer;
+  position: absolute;
+  left: 90px;
+  top: 8px;
+  width: 30px;
+  cursor: pointer;
+}
+#checkbox:checked {
+  appearance: auto;
+  clip-path: circle(50% at 50% 50%);
+}
+
+#label-checkbox {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.label-checkedbox {
+  text-decoration: line-through;
+  color: rgba(126, 124, 124, 0.795);
+}
+
+a.github {
+  text-decoration: none;
+  color: #f5f6fa;
+  background-color: #9c88ff;
+  box-shadow: 0px 0px 2px 2px #9c88ff;
+  border-radius: 16px;
+  margin-right: 6px;
+  padding: 0px 8px;
+  transition: 300ms;
+}
+a.github:hover {
+  background-color: #8c7ae6;
+}
+a.github:active {
+  background-color: #6b5cb4;
+}
+
+img.svg {
+  width: 22px;
+  padding: 0 4px;
+}
+
+p.create {
+  color: #fff;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  margin-bottom: 10px;
+  text-align: center;
+}
