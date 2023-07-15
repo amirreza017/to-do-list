@@ -3,9 +3,6 @@
 const todocardError = document.getElementById('error');
 const todocardLine = document.getElementById('add-task');
 const todocardSubmit = document.getElementById('add-task-btn');
-const todocardCheck = document.getElementById('checkbox');
-const todocardLabelCheck = document.getElementById('label-checkbox');
-
 
 let editBool = false;
 
@@ -28,8 +25,14 @@ function viewList() {
     let div = document.createElement('div');
     div.classList.add('todo-list-card');
 
+    let checkbtn = document.createElement('div');
+    checkbtn.innerHTML = `<input type="checkbox" id="checkbox">`
+    checkbtn.addEventListener('click', (e) => {
+        e.target.parentElement.parentElement.children[0].classList.toggle('label-checkedbox');
+    })
+    
     // Line
-    div.innerHTML += `<input type="checkbox" id="checkbox" onclick="checked()">
+    div.innerHTML += `
     <label for="checkbox" id="label-checkbox">${todocardLine.value}</label>`;
 
     // Delete
@@ -48,6 +51,7 @@ function viewList() {
         editBool = true;
         modifyElement(editBtn, true);
     })
+    div.appendChild(checkbtn);
     div.appendChild(deleteBtn);
     div.appendChild(editBtn);
     boxcard[0].appendChild(div);
@@ -60,13 +64,4 @@ const modifyElement = (element,edit = false) => {
         todocardLine.value = parentLine;
     }
     parentDiv.remove();
-}
-
-// Checked
-let checked = () => {
-    if (todocardCheck.checked == true) {
-        todocardLabelCheck.classList.add('label-checkedbox');
-    } else {
-        todocardLabelCheck.classList.remove('label-checkedbox');
-    }
 }
