@@ -25,6 +25,7 @@ function viewList() {
     let div = document.createElement('div');
     div.classList.add('todo-list-card');
 
+    // Checkbox
     let checkbtn = document.createElement('div');
     checkbtn.innerHTML = `<input type="checkbox" id="checkbox">`
     checkbtn.addEventListener('click', (e) => {
@@ -47,13 +48,31 @@ function viewList() {
     let editBtn = document.createElement('button');
     editBtn.setAttribute('id','btn-edit');
     editBtn.innerHTML = `<img src="./images/icons8-edit-64.png" id="edit" />`;
-    editBtn.addEventListener('click', () => {
-        editBool = true;
-        modifyElement(editBtn, true);
+    editBtn.addEventListener('click', (e) => {
+        // editBool = true;
+        // modifyElement(editBtn, true);
+        e.target.parentElement.parentElement.children[0].contentEditable = true;
+        e.target.parentElement.parentElement.children[0].classList.add('label-editable');
+        e.target.parentElement.parentElement.children[1].children[0].disabled = true;
+        e.target.parentElement.parentElement.children[4].classList.remove('hide');
+        
+    })
+
+    // Edit Done
+    let editedBtn = document.createElement('button');
+    editedBtn.setAttribute('id','btn-edit-done');
+    editedBtn.setAttribute('class','hide');
+    editedBtn.innerHTML = `<img src="./images/icons8-done.svg" id="btn-edit-done-svg" />`
+    editedBtn.addEventListener('click',(e) => {
+        e.target.parentElement.parentElement.children[0].contentEditable = false;
+        e.target.parentElement.parentElement.children[0].classList.remove('label-editable')
+        e.target.parentElement.parentElement.children[1].children[0].disabled = false;
+        e.target.parentElement.classList.add('hide')
     })
     div.appendChild(checkbtn);
     div.appendChild(deleteBtn);
     div.appendChild(editBtn);
+    div.appendChild(editedBtn);
     boxcard[0].appendChild(div);
 }
 //Modify Elements
