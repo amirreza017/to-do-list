@@ -8,6 +8,8 @@ let editBool = false;
 
 todocardLine.value = '';
 
+let array = [];
+
 todocardSubmit.addEventListener('click', (event)=> {
     event.preventDefault();
     editBool = false;
@@ -15,6 +17,14 @@ todocardSubmit.addEventListener('click', (event)=> {
     if (!tempLine) {
         todocardError.classList.remove('hide');
     } else {
+        // zakhire kalamat dar localstorage va arraye 
+        function arrayfunc() {
+            localStorage.setItem('cookieLine',todocardLine.value.trim())
+
+            array.push(localStorage.getItem('cookieLine'))
+            console.log(array)
+        }
+        arrayfunc()
         viewList();
         todocardLine.value = '';
     }
