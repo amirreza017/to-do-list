@@ -8,7 +8,15 @@ let editBool = false;
 
 todocardLine.value = '';
 
-let array = [];
+let cards = { Lines: localStorage.getItem("Lines") ? [localStorage.getItem("Lines")] : [] };
+
+// let cards2 = cards.Lines[0].slice(',')
+// let cards3 = cards2.split(',')
+
+// cards3.forEach((index) => {
+//     document.getElementsByClassName('todo-list-card').innerHTML += `
+//     <label for="checkbox" id="label-checkbox">${cards3[index]}</label>`;
+// })
 
 todocardSubmit.addEventListener('click', (event)=> {
     event.preventDefault();
@@ -17,18 +25,13 @@ todocardSubmit.addEventListener('click', (event)=> {
     if (!tempLine) {
         todocardError.classList.remove('hide');
     } else {
-        // zakhire kalamat dar localstorage va arraye 
-        function arrayfunc() {
-            localStorage.setItem('cookieLine',todocardLine.value.trim())
-
-            array.push(localStorage.getItem('cookieLine'))
-            console.log(array)
-        }
-        arrayfunc()
         viewList();
+        cards.Lines.push(todocardLine.value);
+        localStorage.setItem("Lines", cards.Lines);
         todocardLine.value = '';
     }
 })
+
 
 function viewList() {
     let boxcard = document.getElementsByClassName('todo-list');
@@ -41,10 +44,18 @@ function viewList() {
     checkbtn.addEventListener('click', (e) => {
         e.target.parentElement.parentElement.children[0].classList.toggle('label-checkedbox');
     })
-    
+    // todocardLine.value
     // Line
+    // cards.Lines.forEach(item,index => {
+    //     return cards.Lines[index]
+    // });
     div.innerHTML += `
     <label for="checkbox" id="label-checkbox">${todocardLine.value}</label>`;
+    // cards.Lines.map(item,index => {
+    //     return div.innerHTML += `
+    //     <label for="checkbox" id="label-checkbox">${cards.Lines[index]}</label>`;
+    // })
+
 
     // Delete
     let deleteBtn = document.createElement('button');
