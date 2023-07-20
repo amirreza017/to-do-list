@@ -8,15 +8,26 @@ let editBool = false;
 
 todocardLine.value = '';
 
-let cards = { Lines: localStorage.getItem("Lines") ? [localStorage.getItem("Lines")] : [] };
+let linesString = localStorage.getItem('Lines');
+let lines = [];
 
-// let cards2 = cards.Lines[0].slice(',')
-// let cards3 = cards2.split(',')
+if (linesString) {
+  try {
+    lines = JSON.parse(linesString);
+  } catch (error) {
+    console.error('Error parsing linesString:', error);
+  }
+}
 
-// cards3.forEach((index) => {
-//     document.getElementsByClassName('todo-list-card').innerHTML += `
-//     <label for="checkbox" id="label-checkbox">${cards3[index]}</label>`;
-// })
+let cards = { Lines: lines };
+console.log('cards ::',cards)
+
+if (Array.isArray(cards.Lines)) {
+    cards.Lines.forEach((index) => {
+        document.getElementsByClassName('todo-list-card').innerHTML += `
+        <label for="checkbox" id="label-checkbox">${cards.Lines[index]}</label>`;
+    })
+}
 
 todocardSubmit.addEventListener('click', (event)=> {
     event.preventDefault();
@@ -27,7 +38,7 @@ todocardSubmit.addEventListener('click', (event)=> {
     } else {
         viewList();
         cards.Lines.push(todocardLine.value);
-        localStorage.setItem("Lines", cards.Lines);
+        localStorage.setItem("Lines", JSON.stringify(cards.Lines));
         todocardLine.value = '';
     }
 })
@@ -44,18 +55,9 @@ function viewList() {
     checkbtn.addEventListener('click', (e) => {
         e.target.parentElement.parentElement.children[0].classList.toggle('label-checkedbox');
     })
-    // todocardLine.value
     // Line
-    // cards.Lines.forEach(item,index => {
-    //     return cards.Lines[index]
-    // });
     div.innerHTML += `
     <label for="checkbox" id="label-checkbox">${todocardLine.value}</label>`;
-    // cards.Lines.map(item,index => {
-    //     return div.innerHTML += `
-    //     <label for="checkbox" id="label-checkbox">${cards.Lines[index]}</label>`;
-    // })
-
 
     // Delete
     let deleteBtn = document.createElement('button');
@@ -96,6 +98,7 @@ function viewList() {
     div.appendChild(editedBtn);
     boxcard[0].appendChild(div);
 }
+
 //Modify Elements
 const modifyElement = (element,edit = false) => {
     let parentDiv = element.parentElement;
@@ -105,3 +108,5 @@ const modifyElement = (element,edit = false) => {
     }
     parentDiv.remove();
 }
+var obj = JSON.parse('{ "name":"John", "age":30, "city":"New York"}');
+console.log(obj)
