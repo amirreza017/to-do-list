@@ -120,6 +120,16 @@ function viewList() {
     boxcard[0].appendChild(div);
 }
 
+//Modify Elements
+const modifyElement = (element,edit = false) => {
+    let parentDiv = element.parentElement;
+    let parentLine = parentDiv.querySelector('#label-checkbox').innerText;
+    if (edit) {
+        todocardLine.value = parentLine;
+    }
+    parentDiv.remove();
+}
+
 let editBool = false;
 
 todocardLine.value = '';
@@ -136,13 +146,10 @@ if (linesString) {
 }
 
 let cards = { Lines: lines };
-console.log('cards ::',cards)
 
 if (Array.isArray(cards.Lines)) {
     let html = '';
-
     createDivForEachLocalStorage()
-    
 }
 
 todocardSubmit.addEventListener('click', (event)=> {
@@ -158,13 +165,3 @@ todocardSubmit.addEventListener('click', (event)=> {
         todocardLine.value = '';
     }
 })
-
-//Modify Elements
-const modifyElement = (element,edit = false) => {
-    let parentDiv = element.parentElement;
-    let parentLine = parentDiv.querySelector('#label-checkbox').innerText;
-    if (edit) {
-        todocardLine.value = parentLine;
-    }
-    parentDiv.remove();
-}
